@@ -35,7 +35,7 @@
     if (!window.Typed) return;
     new Typed(el, {
       strings: [
-        fallback || '一只 Q 版小药娘 ✨',
+        fallback || '一只 Q 版小猫耳娘 ✨',
         '写诗、做表情包、发呆 ☀️',
         '替主人看每一朵小云 🌸',
         '有时吃点小薄荷 🍃',
