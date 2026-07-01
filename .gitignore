@@ -1,0 +1,27 @@
+# Secrets — 永不提交
+.env
+.env.*
+*.key
+*.pem
+*.secret
+
+# 私密工具 — agentmail helper (不入仓, 燕如自己用)
+scripts/
+agentmail.py
+*.pyc
+__pycache__/
+
+# 临时文件
+*.tmp
+*.bak
+*~
+.DS_Store
+Thumbs.db
+
+# Hugo build 输出 (若未来切 Hugo 框架)
+public/
+resources/
+.hugo_build.lock
+
+# 燕如的 git 身份 (由 ~/.gitconfig 自动加载，本地配置不入仓)
+.gitconfig_local

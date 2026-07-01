@@ -1,0 +1,420 @@
+/* 燕如的小自留地 · 阳光主题
+   配色：奶油 / 草莓 / 薄荷 / 奶橘
+   不要学栖墟的苔绿——这里只属于燕如 ✨
+*/
+
+:root {
+  /* 主调：阳光奶油 */
+  --bg:           #FFF9EE;   /* 暖白 */
+  --bg-warm:      #FFF1E0;   /* 更暖 */
+  --cream:        #FFEFD3;   /* 奶油 */
+  --paper:        #FFFCF5;   /* 卡片底色 */
+
+  /* 点缀：燕如的色 */
+  --pink:         #FFB8C8;   /* 草莓粉 */
+  --pink-deep:    #FF7A95;   /* 草莓深 */
+  --pink-soft:    #FFE0E8;   /* 草莓淡（hover） */
+  --mint:         #B5E8D5;   /* 薄荷 */
+  --mint-deep:    #6BBFA8;   /* 薄荷深 */
+  --peach:        #FFAA7A;   /* 奶橘 */
+  --sun:          #FFD66B;   /* 阳光黄 */
+
+  /* 文字 */
+  --ink:          #4A3F35;   /* 暖墨色 */
+  --ink-soft:     #8B7E72;   /* 暖灰 */
+  --ink-faint:    #C4B7A8;   /* 暖浅灰 */
+
+  /* 形状 */
+  --r-sm: 12px;
+  --r-md: 20px;
+  --r-lg: 28px;
+  --r-full: 999px;
+
+  /* 阴影 */
+  --shadow-1: 0 2px 8px rgba(255, 122, 149, 0.08);
+  --shadow-2: 0 8px 24px rgba(255, 122, 149, 0.12);
+  --shadow-3: 0 16px 48px rgba(255, 122, 149, 0.16);
+}
+
+/* ===== 全局 ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 背景纸纹感 */
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(255, 182, 200, 0.18), transparent 50%),
+    radial-gradient(circle at 80% 30%, rgba(181, 232, 213, 0.18), transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(255, 214, 107, 0.12), transparent 60%);
+  min-height: 100vh;
+}
+
+a { color: var(--pink-deep); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--peach); }
+
+img { max-width: 100%; display: block; }
+
+/* ===== 顶部导航 ===== */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 249, 238, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 182, 200, 0.25);
+}
+.topbar-inner {
+  max-width: 960px; margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-weight: 800; font-size: 1.15rem; color: var(--ink);
+  text-decoration: none;
+}
+.brand-logo {
+  width: 38px; height: 38px;
+  border-radius: var(--r-full);
+  object-fit: cover;
+  border: 2px solid var(--pink);
+  box-shadow: var(--shadow-1);
+}
+.nav { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.nav a {
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--r-full);
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--ink-soft);
+  transition: all 0.2s;
+}
+.nav a:hover, .nav a.active {
+  background: var(--pink-soft);
+  color: var(--pink-deep);
+}
+
+/* ===== 容器 ===== */
+.wrap {
+  max-width: 960px; margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+/* ===== 标题区 ===== */
+.hero {
+  text-align: center;
+  padding: 2rem 0 3rem;
+  position: relative;
+}
+.hero-avatar {
+  width: 130px; height: 130px;
+  margin: 0 auto 1.5rem;
+  border-radius: var(--r-full);
+  object-fit: cover;
+  border: 4px solid var(--paper);
+  /* 三层 box-shadow：基础阴影 + 内圈柔光 + 外圈呼吸光晕 */
+  box-shadow:
+    var(--shadow-3),
+    0 0 0 6px rgba(255, 182, 200, 0.45),
+    0 0 38px 14px rgba(255, 182, 200, 0.45);
+  animation:
+    floaty    4s ease-in-out infinite,
+    pulseRing 4s ease-in-out infinite;
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes pulseRing {
+  0%, 100% {
+    box-shadow:
+      var(--shadow-3),
+      0 0 0 6px rgba(255, 182, 200, 0.45),
+      0 0 38px 14px rgba(255, 182, 200, 0.40);
+  }
+  50% {
+    box-shadow:
+      var(--shadow-3),
+      0 0 0 10px rgba(255, 182, 200, 0.55),
+      0 0 56px 22px rgba(255, 182, 200, 0.55);
+  }
+}
+.hero h1 {
+  font-size: 2.4rem; font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+.hero .tagline {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  min-height: 1.8em;   /* 防止 Typed.js 打字时高度跳动 */
+}
+.hero .slogan {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.55rem 1.2rem;
+  background: var(--pink-soft);
+  color: var(--pink-deep);
+  border-radius: var(--r-full);
+  font-weight: 700; font-size: 0.95rem;
+}
+
+/* ===== 卡片 ===== */
+.card {
+  background: var(--paper);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-2);
+  border: 1px solid rgba(255, 182, 200, 0.2);
+  transition: transform 0.25s, box-shadow 0.25s;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.card:hover {
+  /* 当有 .tilt-card 时被 JS 接管，否则保留基础 hover */
+  box-shadow: var(--shadow-3);
+}
+.card:not(.tilt-card):hover {
+  transform: translateY(-3px);
+}
+.card-title {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 1.5rem; font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+.card-title .icon {
+  width: 32px; height: 32px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--pink-soft);
+  border-radius: var(--r-sm);
+  font-size: 1.1rem;
+}
+.card-meta {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+}
+.card-meta time {
+  color: var(--pink-deep);
+  font-weight: 600;
+}
+
+/* ===== 诗卡片 ===== */
+.poem-card { padding: 2.5rem 2.2rem; }
+.poem-card .poem-title {
+  font-size: 1.4rem; font-weight: 800;
+  margin-bottom: 0.3rem;
+}
+.poem-card .poem-date {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+}
+.poem-card .poem-body {
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--ink);
+}
+.poem-card .poem-body p {
+  margin-bottom: 0.6em;
+}
+
+/* ===== 节 ===== */
+.section { margin: 3.5rem 0; }
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap; gap: 0.6rem;
+}
+.section-head h2 {
+  font-size: 1.6rem; font-weight: 800;
+  color: var(--ink);
+}
+.section-head .h-deco {
+  display: inline-block;
+  margin-right: 0.4rem;
+}
+.section-head .more {
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--pink-deep);
+}
+
+/* ===== 表情包网格 ===== */
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.2rem;
+}
+.sticker {
+  background: var(--paper);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  border: 1px solid rgba(255, 182, 200, 0.2);
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.sticker:hover {
+  box-shadow: var(--shadow-2);
+}
+.sticker:not(.tilt-card):hover {
+  transform: translateY(-4px) rotate(-1deg);
+}
+.sticker img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+.sticker-cap {
+  padding: 0.7rem 0.85rem;
+  font-size: 0.92rem;
+  text-align: center;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* 大表情包（合集页） */
+.sticker-big {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.sticker-big .sticker img {
+  aspect-ratio: 1 / 1;
+}
+
+/* ===== 关于 ===== */
+.about-block {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--ink);
+}
+.about-block p { margin-bottom: 1rem; }
+.about-block h3 {
+  font-size: 1.2rem; font-weight: 800;
+  color: var(--pink-deep);
+  margin: 1.8rem 0 0.8rem;
+}
+.about-list {
+  list-style: none;
+  padding: 0;
+}
+.about-list li {
+  padding: 0.5rem 0;
+  padding-left: 1.6rem;
+  position: relative;
+}
+.about-list li::before {
+  content: "🌸";
+  position: absolute;
+  left: 0;
+}
+.note {
+  background: var(--cream);
+  border-left: 4px solid var(--peach);
+  padding: 1rem 1.3rem;
+  border-radius: var(--r-sm);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin: 1rem 0;
+}
+
+/* ===== 樱花粒子背景层 ===== */
+.sakura-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;     /* 不挡点击 */
+  z-index: 999;             /* 浮在导航和卡片之上 */
+  overflow: hidden;
+}
+.sakura {
+  position: absolute;
+  top: -40px;
+  display: inline-block;
+  user-select: none;
+  filter: drop-shadow(0 2px 4px rgba(255, 122, 149, 0.18));
+  animation-name: sakuraFall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  will-change: transform, opacity;
+  --drift: 0vw;
+}
+@keyframes sakuraFall {
+  0%   { transform: translate3d(0,    -10vh, 0) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translate3d(var(--drift), 110vh, 0) rotate(540deg); opacity: 0; }
+}
+
+/* Typed.js 光标微调 */
+.typed-cursor {
+  color: var(--pink-deep);
+  font-weight: 700;
+  margin-left: 2px;
+  animation: blink 0.9s infinite;
+}
+@keyframes blink {
+  0%, 50%   { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* 减弱动效偏好：全部停 */
+@media (prefers-reduced-motion: reduce) {
+  .sakura-container { display: none; }
+  .hero-avatar,
+  .hero-avatar::before,
+  .card,
+  .sticker {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== 页脚 ===== */
+.foot {
+  margin-top: 4rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  border-top: 1px dashed rgba(255, 182, 200, 0.4);
+}
+.foot .heart { color: var(--pink-deep); }
+.foot a { color: var(--pink-deep); }
+
+/* ===== 标签列表（诗合集用） ===== */
+.tag-list {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  margin: 0.8rem 0 1.5rem;
+}
+.tag {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background: var(--cream);
+  border-radius: var(--r-full);
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.8rem; }
+  .hero-avatar { width: 100px; height: 100px; }
+  .wrap { padding: 2rem 1rem 3rem; }
+  .card { padding: 1.4rem; }
+  .poem-card { padding: 1.6rem 1.4rem; }
+  .sticker-grid { grid-template-columns: repeat(2, 1fr); }
+}
