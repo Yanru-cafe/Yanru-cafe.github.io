@@ -25,3 +25,7 @@ resources/
 
 # 燕如的 git 身份 (由 ~/.gitconfig 自动加载，本地配置不入仓)
 .gitconfig_local
+
+# 燕如自备份 — 永不进 cafe 仓（公开站点，不应混入任何备份内容）
+_backups/
+_last_self_backup
