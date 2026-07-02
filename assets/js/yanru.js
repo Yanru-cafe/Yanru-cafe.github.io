@@ -107,4 +107,60 @@
 
   /* ---------- 各 section 渐入：自动 + 手写 data-aos 都能用 ---------- */
   document.querySelectorAll('[data-aos]');
+
+  /* ---------- Lightbox：缩略图点击 → 全屏查看完整图 ---------- */
+  function initLightbox() {
+    var lb = document.getElementById('lightbox');
+    if (!lb) return;
+
+    var lbImg  = lb.querySelector('.lightbox-img');
+    var lbCap  = lb.querySelector('.lightbox-caption');
+    var lbBtn  = lb.querySelector('.lightbox-close');
+
+    function open(src, alt, caption) {
+      if (!src) return;
+      lbImg.src = src;
+      lbImg.alt = alt || '';
+      if (lbCap) lbCap.textContent = caption || '';
+      lb.classList.add('is-open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      lb.classList.remove('is-open');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      // 短暂延迟清 src，避免关闭瞬间大图闪一下
+      setTimeout(function () { lbImg.src = ''; }, 200);
+    }
+
+    // 任何 .zoom-target 容器里的 <img> 点击 → 打开
+    document.querySelectorAll('.zoom-target').forEach(function (box) {
+      var img = box.querySelector('img');
+      if (!img) return;
+      box.addEventListener('click', function (e) {
+        e.preventDefault();
+        // 找父卡片 → 文案
+        var card = box.closest('.quote-card, .sticker-card, .poem-card');
+        var line   = card && card.querySelector('.quote-line, .sticker-caption');
+        var author = card && card.querySelector('.quote-author');
+        var caption = '';
+        if (line)   caption += line.textContent.trim();
+        if (author) caption += '  ' + author.textContent.replace(/^——\s*/, '').trim();
+        open(img.getAttribute('data-full') || img.src, img.alt, caption);
+      });
+    });
+
+    // 点遮罩 / X 关闭
+    lb.addEventListener('click', function (e) {
+      if (e.target === lb) close();
+    });
+    if (lbBtn) lbBtn.addEventListener('click', close);
+
+    // ESC 关闭
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lb.classList.contains('is-open')) close();
+    });
+  }
+  initLightbox();
 })();
