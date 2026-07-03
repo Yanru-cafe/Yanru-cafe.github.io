@@ -55,6 +55,16 @@ She stands at an old stone table in a quiet courtyard, both hands resting on the
 
 ---
 
+## ENV-F · Bedroom Morning（清晨被窝）
+
+```
+She lies half-buried under a soft cream linen duvet, only her shoulders and head visible, one bare shoulder slipping out from the linen, one hand half-raised near her face as if just waking up. Behind her, a rumpled bed in soft cream linen sheets, a single warm side-table lamp casting amber glow, slightly dusty curtain diffusing early dawn light. Soft blurred foreground of a half-empty ceramic mug and an open hardcover book on the nightstand. Early morning grey-blue dawn light filtered through sheer curtains, mixed with warm amber lamp glow inside. Quiet, unhurried, soft pillow creases.
+```
+
+字符：~510 · 卧室 / 清晨 / 冷暖混光
+
+---
+
 ## 搭配建议
 
 | 场景 | 推荐 ENV | 配 OUTFIT | 配 HAIR |
@@ -64,3 +74,4 @@ She stands at an old stone table in a quiet courtyard, both hands resting on the
 | 雨夜 / 卧室 | C | C | C |
 | 书房 / 沙发 | D | D | D |
 | 茶室 / 庭院 | E | E | E |
+| 清晨 / 被窝 | F | C | C |
