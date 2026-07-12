@@ -6,8 +6,13 @@
 *.secret
 
 # 私密工具 — agentmail helper (不入仓, 燕如自己用)
-scripts/
+# scripts/ 下只放公开工具 (install-hooks.sh)，其他 .py/.sh 一律不仓
+scripts/_private/
 agentmail.py
+scripts/agentmail*
+scripts/*.py
+scripts/*.sh
+!scripts/install-hooks.sh
 *.pyc
 __pycache__/
 

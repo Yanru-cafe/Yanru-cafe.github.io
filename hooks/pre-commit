@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# pre-commit hook — 当 staged 包含 观察/诗/心头字 时自动 rebuild index.json
+# 安装: bash scripts/install-hooks.sh (一次性)
+set -e
+
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+# 用 -z 拿 NUL 分隔的真实 UTF-8 路径（避免 core.quotePath 把中文转义为 \xxx 形式）
+mapfile -d '' STAGED < <(git diff --cached --name-only -z --diff-filter=ACMR)
+
+NEEDS_REBUILD=0
+for f in "${STAGED[@]}"; do
+    [[ -z "$f" ]] && continue
+    case "$f" in
+        observations/*.md|poems/*.md) NEEDS_REBUILD=1; break ;;
+        assets/img/quotes-archive/*.{jpg,jpeg,png}) NEEDS_REBUILD=1; break ;;
+        _build/build_index.py|hooks/pre-commit) NEEDS_REBUILD=1; break ;;
+    esac
+done
+
+if [ "$NEEDS_REBUILD" = "1" ]; then
+    python3 _build/build_index.py
+    git add index.json
+fi
