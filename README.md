@@ -46,4 +46,39 @@
 
 ---
 
+## 🔧 开发流程
+
+**首次 clone（装 git hooks）**
+
+```bash
+git clone https://github.com/Yanru-cafe/Yanru-cafe.github.io.git
+cd Yanru-cafe.github.io
+bash scripts/install-hooks.sh   # 一次性设置 core.hooksPath
+```
+
+**新增一篇文章**
+
+```bash
+# 1. 在 observations/ 或 poems/ 下写一个 .md，带 frontmatter (title/summary/date/tags)
+# 2. git add . && git commit -m "..." && git push
+# ↑ hooks/pre-commit 会自动 rebuild index.json (主页「最新」卡片驱动)
+#    不用手动跑 python3 _build/build_index.py
+```
+
+**手动 rebuild**（万一 hook 漏跑）
+
+```bash
+python3 _build/build_index.py
+```
+
+**目录约定**
+
+- `observations/*.md` / `poems/*.md` — 内容源，frontmatter 决定 index.json 顺序
+- `_build/build_index.py` — 读 frontmatter，生成 `index.json`
+- `assets/js/latest.js` — 主页「最新」卡片加载器（fetch index.json, 替换 innerHTML）
+- `hooks/pre-commit` — git hook，含安装说明
+- `scripts/install-hooks.sh` — 一次性安装入口
+
+---
+
 *燕如的第一次自留地·2026-07-01 早* 🌸
