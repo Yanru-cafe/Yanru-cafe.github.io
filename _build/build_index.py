@@ -19,6 +19,32 @@ TZ = timezone(timedelta(hours=8))
 FRONTMATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n?", re.DOTALL)
 H1_RE = re.compile(r"^#\s+(.+?)\s*$", re.MULTILINE)
 H2_RE = re.compile(r"^##\s+(.+?)\s*$", re.MULTILINE)
+QUOTES_MTIME_RE = re.compile(r"(最后更新 · \d{4}-\d{2}-\d{2} )(早上|中午|晚上)")
+
+
+def period_of(hour: int) -> str:
+    """粗略时段：早 0-11 / 中午 12-17 / 晚 18-23。匹配主人现有标签。"""
+    if hour < 12:
+        return "早上"
+    if hour < 18:
+        return "中午"
+    return "晚上"
+
+
+def update_quotes_mtime() -> bool:
+    """把 quotes.html 里的『最后更新 · YYYY-MM-DD 时段』改成当前时间。
+    返回 True 表示文件确实被改写。"""
+    qhtml_path = ROOT / "quotes.html"
+    if not qhtml_path.exists():
+        return False
+    text = qhtml_path.read_text(encoding="utf-8")
+    now = datetime.now(TZ)
+    new_line = f"最后更新 · {now.strftime('%Y-%m-%d')} {period_of(now.hour)}"
+    new_text, n = QUOTES_MTIME_RE.subn(new_line, text)
+    if n > 0 and new_text != text:
+        qhtml_path.write_text(new_text, encoding="utf-8")
+        return True
+    return False
 
 
 def parse_frontmatter(text):
@@ -147,7 +173,10 @@ def entries_from_quotes():
     return out
 
 
-def main():
+def main(argv=None):
+    argv = list(sys.argv[1:] if argv is None else argv)
+    touch_quotes_mtime = "--touch-quotes-mtime" in argv
+
     all_entries = []
     all_entries.extend(entries_from_observations())
     all_entries.extend(entries_from_poems())
@@ -167,6 +196,14 @@ def main():
             by_kind[k] = e
     for k, e in by_kind.items():
         print("  latest", k, ":", e.get("title"), "@", e.get("date", "")[:16])
+
+    if touch_quotes_mtime:
+        if update_quotes_mtime():
+            now = datetime.now(TZ)
+            print("→ quotes.html「最后更新」已更新为",
+                  now.strftime("%Y-%m-%d"), period_of(now.hour))
+        else:
+            print("→ quotes.html「最后更新」无需改动（未找到匹配行）")
 
 
 if __name__ == "__main__":

@@ -56,13 +56,16 @@ cd Yanru-cafe.github.io
 bash scripts/install-hooks.sh   # 一次性设置 core.hooksPath
 ```
 
-**新增一篇文章**
+**新增一篇文章 / 一束心头字**
 
 ```bash
-# 1. 在 observations/ 或 poems/ 下写一个 .md，带 frontmatter (title/summary/date/tags)
-# 2. git add . && git commit -m "..." && git push
-# ↑ hooks/pre-commit 会自动 rebuild index.json (主页「最新」卡片驱动)
-#    不用手动跑 python3 _build/build_index.py
+# 观察/诗: 在 observations/ 或 poems/ 下写一个 .md，带 frontmatter (title/summary/date/tags)
+# 心头字:  把图丢到 assets/img/quotes-archive/、在 quotes.html 顶部加一张卡片
+# 然后: git add . && git commit -m "..." && git push
+# ↑ hooks/pre-commit 会自动：
+#    - rebuild index.json (主页「最新」卡片驱动)
+#    - 刷新 quotes.html 底部「最后更新 · YYYY-MM-DD 时段」(仅心头字新图时)
+#    不用手动跑 build_index.py
 ```
 
 **手动 rebuild**（万一 hook 漏跑）

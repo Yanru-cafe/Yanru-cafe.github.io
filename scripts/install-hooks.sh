@@ -14,5 +14,7 @@ chmod +x hooks/pre-commit
 
 git config core.hooksPath hooks
 echo "✅ 已设置 core.hooksPath = hooks/"
-echo "   下次 git commit 会自动 rebuild index.json (当 observations/poems/quotes-archive 有变化时)"
+echo "   下次 git commit 会自动："
+echo "     - rebuild index.json (当 observations/poems/quotes-archive 有变化时)"
+echo "     - 刷新 quotes.html「最后更新」时间 (当 quotes-archive 有新图时)"
 echo "   卸载: git config --unset core.hooksPath"

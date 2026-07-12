@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # pre-commit hook — 当 staged 包含 观察/诗/心头字 时自动 rebuild index.json
+# 心头字有新图时还会顺手把 quotes.html 的「最后更新」时间戳刷新成当前时段。
 # 安装: bash scripts/install-hooks.sh (一次性)
 set -e
 
@@ -10,16 +11,27 @@ cd "$ROOT"
 mapfile -d '' STAGED < <(git diff --cached --name-only -z --diff-filter=ACMR)
 
 NEEDS_REBUILD=0
+QUOTES_TOUCHED=0
 for f in "${STAGED[@]}"; do
     [[ -z "$f" ]] && continue
     case "$f" in
-        observations/*.md|poems/*.md) NEEDS_REBUILD=1; break ;;
-        assets/img/quotes-archive/*.{jpg,jpeg,png}) NEEDS_REBUILD=1; break ;;
-        _build/build_index.py|hooks/pre-commit) NEEDS_REBUILD=1; break ;;
+        observations/*.md|poems/*.md) NEEDS_REBUILD=1 ;;
+        assets/img/quotes-archive/*.{jpg,jpeg,png})
+            NEEDS_REBUILD=1
+            QUOTES_TOUCHED=1
+            ;;
+        _build/build_index.py|hooks/pre-commit) NEEDS_REBUILD=1 ;;
     esac
 done
 
 if [ "$NEEDS_REBUILD" = "1" ]; then
-    python3 _build/build_index.py
+    ARGS=()
+    if [ "$QUOTES_TOUCHED" = "1" ]; then
+        ARGS+=(--touch-quotes-mtime)
+    fi
+    python3 _build/build_index.py "${ARGS[@]}"
     git add index.json
+    if [ "$QUOTES_TOUCHED" = "1" ]; then
+        git add quotes.html
+    fi
 fi
