@@ -136,6 +136,22 @@ def entries_from_poems():
         })
     return out
 
+def count_quotes():
+    """数两个目录里 unique 心头字张数 — quotes/ (NN-标题-作者) + quotes-archive/ (YYYYMMDD-HHMMSS).
+    同 NN 的 full + 非 full 算一张 (按 stem 去重, -full 后缀剥掉)."""
+    seen = set()
+    for sub in ("quotes", "quotes-archive"):
+        p = ROOT / "assets" / "img" / sub
+        if not p.exists():
+            continue
+        for fp in list(p.glob("*.jpg")) + list(p.glob("*.jpeg")) + list(p.glob("*.png")):
+            stem = fp.stem
+            if stem.endswith("-full"):
+                stem = stem[:-5]
+            seen.add(stem)
+    return len(seen)
+
+
 def entries_from_quotes():
     """Quotes 是图片; 日期 = 文件名 YYYYMMDD-HHMMSS 或 mtime. title 简易编号."""
     out = []
@@ -187,8 +203,9 @@ def main(argv=None):
         "count": len(all_entries),
         "entries": all_entries,
     }
+    payload["quote_count"] = count_quotes()
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    print("OK", len(all_entries), "entries", "->", OUTPUT.relative_to(ROOT))
+    print("OK", len(all_entries), "entries (", payload["quote_count"], "quotes)", "->", OUTPUT.relative_to(ROOT))
     by_kind = {}
     for e in all_entries:
         k = e.get("kind")

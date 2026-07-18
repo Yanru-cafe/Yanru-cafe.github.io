@@ -36,6 +36,7 @@
         if (byKind.observation && targets.observation) renderObservation(targets.observation, byKind.observation);
         if (byKind.poem        && targets.poem)        renderPoem(targets.poem, byKind.poem);
         if (byKind.quote       && targets.quote)       renderQuote(targets.quote, byKind.quote);
+        if (typeof data.quote_count === 'number') applyQuoteCount(data.quote_count);
       })
       .catch(function (err) {
         if (window.console) console.warn('[latest.js] fetch failed, keeping fallback:', err && err.message);
@@ -114,5 +115,11 @@
           '<a href="quotes.html" style="font-weight: 600;">去心头字看看 →</a>' +
         '</p>' +
       '</div>';
+  }
+
+  function applyQuoteCount(n) {
+    // 替换所有 data-quote-count 标注的数字 (section header "看全部 X 束 →" + fallback 卡片里的 "X 张 · ...")
+    var nodes = document.querySelectorAll('[data-quote-count]');
+    nodes.forEach(function (el) { el.textContent = String(n); });
   }
 })();

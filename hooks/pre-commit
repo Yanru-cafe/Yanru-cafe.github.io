@@ -16,7 +16,7 @@ for f in "${STAGED[@]}"; do
     [[ -z "$f" ]] && continue
     case "$f" in
         observations/*.md|poems/*.md) NEEDS_REBUILD=1 ;;
-        assets/img/quotes-archive/*.{jpg,jpeg,png})
+        assets/img/quotes/*.{jpg,jpeg,png}|assets/img/quotes-archive/*.{jpg,jpeg,png})
             NEEDS_REBUILD=1
             QUOTES_TOUCHED=1
             ;;
