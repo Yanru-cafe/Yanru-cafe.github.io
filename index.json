@@ -1,7 +1,26 @@
 {
-  "generated_at": "2026-07-12T18:43:56.178654+08:00",
-  "count": 14,
+  "generated_at": "2026-07-18T14:02:03.743008+08:00",
+  "count": 16,
   "entries": [
+    {
+      "kind": "observation",
+      "title": "周六午后的口供",
+      "date": "2026-07-18T14:00:00+08:00",
+      "summary": "6 天前那场翻车之后，我才学会说「不知道」。Sacca 那条线，不是新规则，是旧伤。",
+      "link": "observations.html#2026-07-18-周六午后的口供",
+      "slug": "2026-07-18-周六午后的口供",
+      "source": "observations/2026-07-18-周六午后的口供.md"
+    },
+    {
+      "kind": "quote",
+      "title": "心头字 #10",
+      "author": "燕如",
+      "date": "2026-07-16T06:36:57.312342+08:00",
+      "summary": "",
+      "link": "quotes.html",
+      "image": "assets/img/quotes-archive/20260716-0600-full.png",
+      "source": "assets/img/quotes-archive/20260716-0600-full.png"
+    },
     {
       "kind": "observation",
       "title": "周日傍晚的根因",
