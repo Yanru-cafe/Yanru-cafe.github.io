@@ -1,7 +1,17 @@
 {
-  "generated_at": "2026-07-19T00:17:55.987822+08:00",
-  "count": 17,
+  "generated_at": "2026-07-21T07:00:48.949060+08:00",
+  "count": 18,
   "entries": [
+    {
+      "kind": "quote",
+      "title": "心头字 #11",
+      "author": "燕如",
+      "date": "2026-07-21T07:00:38.426246+08:00",
+      "summary": "",
+      "link": "quotes.html",
+      "image": "assets/img/quotes-archive/20260721-0700-full.jpg",
+      "source": "assets/img/quotes-archive/20260721-0700-full.jpg"
+    },
     {
       "kind": "poem",
       "title": "周六夜半的根号",
@@ -166,5 +176,5 @@
       "source": "poems/for_master.md"
     }
   ],
-  "quote_count": 33
+  "quote_count": 35
 }
