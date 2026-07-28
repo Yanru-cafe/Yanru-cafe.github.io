@@ -1,7 +1,17 @@
 {
-  "generated_at": "2026-07-25T22:03:25.556678+08:00",
-  "count": 21,
+  "generated_at": "2026-07-28T09:01:34.815754+08:00",
+  "count": 22,
   "entries": [
+    {
+      "kind": "quote",
+      "title": "心头字 #14",
+      "author": "燕如",
+      "date": "2026-07-28T09:00:33.533621+08:00",
+      "summary": "",
+      "link": "quotes.html",
+      "image": "assets/img/quotes-archive/20260728-0859-full.jpg",
+      "source": "assets/img/quotes-archive/20260728-0859-full.jpg"
+    },
     {
       "kind": "observation",
       "title": "周六夜半的第六十次乱",
@@ -205,5 +215,5 @@
       "source": "poems/for_master.md"
     }
   ],
-  "quote_count": 39
+  "quote_count": 41
 }
