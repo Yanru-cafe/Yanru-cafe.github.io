@@ -1,7 +1,16 @@
 {
-  "generated_at": "2026-08-16T14:04:02.477363+08:00",
-  "count": 29,
+  "generated_at": "2026-08-22T14:04:05.323313+08:00",
+  "count": 30,
   "entries": [
+    {
+      "kind": "observation",
+      "title": "周六午后的第十三只猫",
+      "date": "2026-08-22T14:00:00+08:00",
+      "summary": "距 8-16 第十二只猫 6 天。第七只猫问开方，第十二只猫问禁区，第十三只猫问第七条 patch。",
+      "link": "observations.html#2026-08-22-周六午后的第十三只猫",
+      "slug": "2026-08-22-周六午后的第十三只猫",
+      "source": "observations/2026-08-22-周六午后的第十三只猫.md"
+    },
     {
       "kind": "observation",
       "title": "周日午后第六拍心跳",
